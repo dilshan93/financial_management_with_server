@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Data>
+  <Categories>
+    <Category Id="1" Name="test1" />
+  </Categories>
+  <SyncState PendingData="true" />
+  <Categories>
+    <Category Id="-1" Title="rrrrr" />
+  </Categories>
+</Data>
