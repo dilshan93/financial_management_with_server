@@ -111,6 +111,9 @@ namespace financial_management.Models
 
             TransactionDTO transactions = null;
 
+            if (Status.IsConnected())
+            {
+
             try
             {
                 using (var server = new HttpClient())
@@ -127,13 +130,18 @@ namespace financial_management.Models
 
                         var response = readData.Result;
                         transactions = response.ReturnResponse;
-                        // store.GetCategories(categories);
                     }
                 }
             }
             catch (Exception ex)
             {
-                // categories = store.GetCategories(null);
+                    transactions = transactionBackup.GetTransactionByID(id);
+                }
+
+            }
+            else
+            {
+                transactions = transactionBackup.GetTransactionByID(id);
             }
 
 
@@ -146,6 +154,8 @@ namespace financial_management.Models
         {
 
             TransactionResponse transactions = null;
+            if (Status.IsConnected())
+            {
 
             try
             {
@@ -162,13 +172,23 @@ namespace financial_management.Models
                         readData.Wait();
 
                         transactions = readData.Result;
-                        // store.GetCategories(categories);
+                        transactionBackup.EditTransaction(transactionDTO, id);
+                        return transactions;
                     }
                 }
             }
             catch (Exception ex)
             {
-                // categories = store.GetCategories(null);
+                    syncService.SaveWatingSyncState();
+                    transactions = transactionBackup.EditTransaction(transactionDTO, id);
+                
+            }
+
+            }
+            else
+            {
+                syncService.SaveWatingSyncState();
+                transactions = transactionBackup.EditTransaction(transactionDTO, id);
             }
 
 
@@ -177,7 +197,10 @@ namespace financial_management.Models
 
         public TransactionResponse DeleteTransaction(int id)
         {
-            TransactionResponse response = new TransactionResponse();
+                TransactionResponse response = new TransactionResponse();
+
+            if (Status.IsConnected())
+            {
             try
             {
                 using (var server = new HttpClient())
@@ -193,13 +216,21 @@ namespace financial_management.Models
                         readData.Wait();
 
                         response = readData.Result;
-                        // store.GetCategories(categories);
-                    }
+                        transactionBackup.DeleteTransaction(id);
+                        }
                 }
             }
             catch (Exception ex)
             {
-                // categories = store.GetCategories(null);
+                    syncService.SaveWatingSyncState();
+                    response = transactionBackup.DeleteTransaction(id);
+            }
+
+            }
+            else
+            {
+                syncService.SaveWatingSyncState();
+                response = transactionBackup.DeleteTransaction(id);
             }
             return response;
         }
@@ -222,13 +253,12 @@ namespace financial_management.Models
                         readData.Wait();
 
                         response = readData.Result;
-                        // store.GetCategories(categories);
                     }
                 }
             }
             catch (Exception ex)
             {
-                // categories = store.GetCategories(null);
+                return null;
             }
             return response;
         }

@@ -1,9 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Data>
-  <Categories>
-    <Category Id="1" Name="test1" />
-    <Category Id="8" Name="test2" />
-  </Categories>
   <Transactions>
     <Transaction Id="5" Name="tttt" Type="Expense" Amount="34646" Date="2022-04-22T00:00:00" CategoryId="1" IsRepete="false">
       <CategoryTransaction Id="1" Name="test1" />
@@ -17,7 +13,7 @@
     <Transaction Id="8" Name="twet" Type="Expense" Amount="235535" Date="2022-04-10T00:00:00" CategoryId="1" IsRepete="false">
       <CategoryTransaction Id="1" Name="test1" />
     </Transaction>
-    <Transaction Id="9" Name="asdfgadg" Type="Income" Amount="235235" Date="2022-04-12T00:00:00" CategoryId="1" IsRepete="false">
+    <Transaction Id="9" Name="aaaaaaaaaa" Type="Income" Amount="235235" Date="2022-04-12T00:00:00" CategoryId="1" IsRepete="false">
       <CategoryTransaction Id="1" Name="test1" />
     </Transaction>
     <Transaction Id="10" Name="tttrtrtrt" Type="Expense" Amount="433434" Date="2022-04-26T00:00:00" CategoryId="8" IsRepete="false">
@@ -30,4 +26,8 @@
       <CategoryTransaction Id="8" Name="test2" />
     </Transaction>
   </Transactions>
+  <Categories>
+    <Category Id="1" Name="test1" />
+    <Category Id="8" Name="test2" />
+  </Categories>
 </Data>

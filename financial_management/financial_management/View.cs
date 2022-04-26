@@ -101,7 +101,7 @@ namespace financial_management
             else
             {
 
-                MessageBox.Show("Report generation failed. Please contact support team!", "Progress Repo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Report generation failed. Please contact support team!", "Progress Report", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Close();
                 return;
             }

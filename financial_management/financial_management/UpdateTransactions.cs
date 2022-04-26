@@ -17,6 +17,7 @@ namespace financial_management
     public partial class UpdateTransactions : Form
     {
         Dictionary<String, CategoryDTO> categoryByName = new Dictionary<String, CategoryDTO>();
+        TransactionDTO transactionDTO = new TransactionDTO();
         int transId;
         public UpdateTransactions(int id)
         {
@@ -37,7 +38,7 @@ namespace financial_management
             // Load_transaction
             TransactionsModel transactionsModel = new TransactionsModel();
 
-            TransactionDTO transactionDTO = transactionsModel.LoadTransactionDataById(transId);
+           transactionDTO = transactionsModel.LoadTransactionDataById(transId);
 
             txtTransName.Text = transactionDTO.Name;
             comTransType.Text = transactionDTO.Type.ToString();
@@ -59,7 +60,7 @@ namespace financial_management
             }
 
             // Update transaction object
-            TransactionDTO transactionDTO = new TransactionDTO();
+            
             transactionDTO.Name = name;
             transactionDTO.Amount = double.Parse(amount);
             transactionDTO.Date = DateTime.Parse(dtpTransDate.Text);
