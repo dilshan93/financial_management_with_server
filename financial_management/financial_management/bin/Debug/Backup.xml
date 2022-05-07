@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Data>
+  <Categories>
+    <Category Id="1" Name="test1" />
+    <Category Id="2" Name="test2" />
+  </Categories>
+  <Transactions>
+    <Transaction Id="1" Name="newAzuar" Type="Expense" Amount="123333" Date="2022-04-28T00:00:00" CategoryId="1" IsRepete="false">
+      <CategoryTransaction Id="1" Name="test1" />
+    </Transaction>
+    <Transaction Id="2" Name="new2" Type="Income" Amount="1111" Date="2022-04-28T00:00:00" CategoryId="2" IsRepete="false">
+      <CategoryTransaction Id="2" Name="test2" />
+    </Transaction>
+  </Transactions>
+</Data>

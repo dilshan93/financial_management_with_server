@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace financial_management.Global
 {
@@ -13,8 +14,11 @@ namespace financial_management.Global
         private static bool WatingSync = false;
         private static int CatId = 0;
         private static int TransId = 0;
+        public static XElement LoadPath = XElement.Load("../../Backup.xml");
+        public static string SavePath = "../../Backup.xml";
+        public static string endpointURL = Properties.Settings.Default.ServiceURLLocal;
 
-       
+
 
         public static void SetServerStatus(bool status)
         {
@@ -52,5 +56,6 @@ namespace financial_management.Global
             TransId = TransId - 1;
             return TransId;
         }
+
     }
 }

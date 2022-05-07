@@ -13,7 +13,7 @@ namespace financial_management.XMLBackup
 
         public void IsWatingSyncTrue()
         {
-            var backupXML = XElement.Load("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+            var backupXML = Status.LoadPath;
             if (backupXML.Descendants("SyncState").Count() > 0)
             {
                 Status.SetWatingSync(true);
@@ -26,17 +26,17 @@ namespace financial_management.XMLBackup
 
         public void DeleteSyncState()
         {
-            var backupXML = XElement.Load("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+            var backupXML = Status.LoadPath;
             backupXML.Descendants("SyncState").Remove();
-            backupXML.Save("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+            backupXML.Save(Status.SavePath);
             Status.SetWatingSync(false);
         }
 
         public void SaveWatingSyncState()
         {
-            var xmlDoc = XElement.Load("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+            var xmlDoc = Status.LoadPath;
             xmlDoc.Add(new XElement("SyncState", new XAttribute("PendingData", true)));
-            xmlDoc.Save("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+            xmlDoc.Save(Status.SavePath);
             Status.SetWatingSync(true);
         }
     }

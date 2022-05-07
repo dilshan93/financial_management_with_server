@@ -1,4 +1,5 @@
-﻿using financial_management.Response;
+﻿using financial_management.Global;
+using financial_management.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace financial_management.Models
             {
                 using (var server = new HttpClient())
                 {
-                    server.BaseAddress = new Uri(Properties.Settings.Default.ServiceURL);
+                    server.BaseAddress = new Uri(Status.endpointURL);
                     var responseData = server.GetAsync("category/liveness");
                     responseData.Wait();
 

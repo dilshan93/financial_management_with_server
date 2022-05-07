@@ -25,13 +25,25 @@ namespace financial_management.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:44339")]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://financeappiit.azurewebsites.net")]
         public string ServiceURL {
             get {
                 return ((string)(this["ServiceURL"]));
             }
             set {
                 this["ServiceURL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:44339")]
+        public string ServiceURLLocal {
+            get {
+                return ((string)(this["ServiceURLLocal"]));
+            }
+            set {
+                this["ServiceURLLocal"] = value;
             }
         }
     }

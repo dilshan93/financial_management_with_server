@@ -1,4 +1,5 @@
 ﻿using financial_management.DTO;
+using financial_management.Global;
 using financial_management.Response;
 using System;
 using System.Collections.Generic;
@@ -16,18 +17,19 @@ namespace financial_management.XMLBackup
         {
             if (categoryDTOs != null)
             {
-                var xmlData = XElement.Load("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+                /*var xmlData = XElement.Load("Backup.xml");*/
+                var xmlData = Status.LoadPath;
                 var catXml = categoryDTOs.ToList()
                                     .Select(x => new XElement("Category", new XAttribute("Id", x.Id),
                                         new XAttribute("Name", x.Name))
                                     ).ToList();
                 xmlData.Descendants("Categories").Remove();
                 xmlData.Add(new XElement("Categories", catXml));
-                xmlData.Save("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+                xmlData.Save(Status.SavePath);
             }
             else
             {
-                var xmlData = XElement.Load("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+                var xmlData = Status.LoadPath;
                 categoryDTOs = xmlData.Descendants("Category")
                     .Select(x => new CategoryDTO
                     {
@@ -43,8 +45,8 @@ namespace financial_management.XMLBackup
         {
             AllCategoryResponse response = new AllCategoryResponse();
 
-            var xmlDoc = XElement.Load("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
-            int savedCatTotal = xmlDoc.Descendants("Category")
+            var xmlData = Status.LoadPath;
+            int savedCatTotal = xmlData.Descendants("Category")
                 .Where(x => x.Attribute("Name").Value == categoryDTOs.Name)
                 .Count();
 
@@ -55,9 +57,9 @@ namespace financial_management.XMLBackup
             }
             else
             {
-                xmlDoc.Add(new XElement("Categories", new XElement("Category", new XAttribute("Id", categoryDTOs.Id),
+                xmlData.Add(new XElement("Categories", new XElement("Category", new XAttribute("Id", categoryDTOs.Id),
                                         new XAttribute("Name", categoryDTOs.Name))));
-                xmlDoc.Save("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+                xmlData.Save(Status.SavePath);
                 response.Sucess = true;
                 response.Discription = "successfully Added New Category";
             }

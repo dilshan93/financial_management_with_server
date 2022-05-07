@@ -28,7 +28,7 @@ namespace financial_management.Models
             {
                 using (var server = new HttpClient())
                 {
-                    server.BaseAddress = new Uri(Properties.Settings.Default.ServiceURL);
+                    server.BaseAddress = new Uri(Status.endpointURL);
                     var responseData = server.PostAsJsonAsync<TransactionDTO>("transaction/create", transactionDTO);
                     responseData.Wait();
 
@@ -75,7 +75,7 @@ namespace financial_management.Models
             {
                 using (var server = new HttpClient())
                 {
-                    server.BaseAddress = new Uri(Properties.Settings.Default.ServiceURL);
+                    server.BaseAddress = new Uri(Status.endpointURL);
                     var responseData = server.GetAsync("transaction");
                     responseData.Wait();
 
@@ -118,7 +118,7 @@ namespace financial_management.Models
             {
                 using (var server = new HttpClient())
                 {
-                    server.BaseAddress = new Uri(Properties.Settings.Default.ServiceURL);
+                    server.BaseAddress = new Uri(Status.endpointURL);
                     var responseData = server.GetAsync("transaction/getId?id=" + id);
                     responseData.Wait();
 
@@ -161,7 +161,7 @@ namespace financial_management.Models
             {
                 using (var server = new HttpClient())
                 {
-                    server.BaseAddress = new Uri(Properties.Settings.Default.ServiceURL);
+                    server.BaseAddress = new Uri(Status.endpointURL);
                     var responseData = server.PostAsJsonAsync<TransactionDTO>("transaction/update?id=" + id, transactionDTO);
                     responseData.Wait();
 
@@ -205,7 +205,7 @@ namespace financial_management.Models
             {
                 using (var server = new HttpClient())
                 {
-                    server.BaseAddress = new Uri(Properties.Settings.Default.ServiceURL);
+                    server.BaseAddress = new Uri(Status.endpointURL);
                     var responseData = server.DeleteAsync("transaction?id=" + id);
                     responseData.Wait();
 
@@ -242,7 +242,7 @@ namespace financial_management.Models
             {
                 using (var server = new HttpClient())
                 {
-                    server.BaseAddress = new Uri(Properties.Settings.Default.ServiceURL);
+                    server.BaseAddress = new Uri(Status.endpointURL);
                     var responseData = server.GetAsync("transaction/getAllReportrs");
                     responseData.Wait();
 

@@ -3,6 +3,9 @@
   <Profiles />
   <Settings>
     <Setting Name="ServiceURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://financeappiit.azurewebsites.net</Value>
+    </Setting>
+    <Setting Name="ServiceURLLocal" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://localhost:44339</Value>
     </Setting>
   </Settings>

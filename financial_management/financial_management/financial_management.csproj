@@ -52,14 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BudgetStore.cs">
-      <DependentUpon>BudgetStore.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="BudgetStore.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BudgetStore.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Category.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,17 +140,6 @@
     <EmbeddedResource Include="View.resx">
       <DependentUpon>View.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="BudgetStore.xsc">
-      <DependentUpon>BudgetStore.xsd</DependentUpon>
-    </None>
-    <None Include="BudgetStore.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>BudgetStore.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="BudgetStore.xss">
-      <DependentUpon>BudgetStore.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

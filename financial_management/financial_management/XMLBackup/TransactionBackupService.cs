@@ -1,5 +1,6 @@
 ﻿using financial_management.DataObjects;
 using financial_management.DTO;
+using financial_management.Global;
 using financial_management.Response;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace financial_management.XMLBackup
         {
             if (transactions != null)
             {
-                var xmlData = XElement.Load("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+                var xmlData = Status.LoadPath;
                 var transXml = transactions.ToList().Select(x => new XElement("Transaction", new XAttribute("Id", x.Id),
                                         new XAttribute("Name", x.Name),
                                         new XAttribute("Type", x.Type),
@@ -29,11 +30,11 @@ namespace financial_management.XMLBackup
                                         new XAttribute("IsRepete", x.IsRepete))).ToList();
                 xmlData.Descendants("Transactions").Remove();
                 xmlData.Add(new XElement("Transactions", transXml));
-                xmlData.Save("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+                xmlData.Save(Status.SavePath);
             }
             else
             {
-                var xmlData = XElement.Load("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+                var xmlData = Status.LoadPath;
                 transactions = xmlData.Descendants("Transaction").Select(x => new TransactionDTO
                     {
                         Id = int.Parse(x.Attribute("Id").Value.ToString()),
@@ -57,7 +58,7 @@ namespace financial_management.XMLBackup
         {
             TransactionDTO transaction = null;
 
-            var xmlData = XElement.Load("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+            var xmlData = Status.LoadPath;
             transaction = xmlData.Descendants("Transaction").Where(x => int.Parse(x.Attribute("Id").Value) == id).Select(x => new TransactionDTO
                 {
                     Id = int.Parse(x.Attribute("Id").Value.ToString()),
@@ -80,7 +81,7 @@ namespace financial_management.XMLBackup
         public TransactionResponse CreateTransaction(TransactionDTO transaction)
         {
             TransactionResponse response = new TransactionResponse();
-            var xmlData = XElement.Load("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+            var xmlData = Status.LoadPath;
             CategoryDTO category = xmlData.Descendants("Category").Where(x => int.Parse(x.Attribute("Id").Value) == transaction.CategoryId).Select(x => new CategoryDTO
                 {
                     Id = int.Parse(x.Attribute("Id").Value.ToString()),
@@ -96,7 +97,7 @@ namespace financial_management.XMLBackup
                                         new XElement("CategoryTransaction", new XAttribute("Id", category.Id),
                                         new XAttribute("Name", category.Name)),
                                         new XAttribute("IsRepete", transaction.IsRepete))));
-            xmlData.Save("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+            xmlData.Save(Status.SavePath);
             response.Sucess = true;
             response.Discription = "Successfully Added New Transaction!";
 
@@ -106,7 +107,7 @@ namespace financial_management.XMLBackup
         public TransactionResponse EditTransaction(TransactionDTO transaction, int id)
         {
             TransactionResponse response = new TransactionResponse();
-            var xmlData = XElement.Load("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+            var xmlData = Status.LoadPath;
             var data = xmlData.Descendants("Transaction").Where(x => int.Parse(x.Attribute("Id").Value) == id).First();
 
             data.Attribute("Name").Value = transaction.Name;
@@ -119,7 +120,7 @@ namespace financial_management.XMLBackup
                                         new XAttribute("Name", transaction.Category.Name)));
 
             data.Attribute("IsRepete").Value = transaction.IsRepete.ToString();
-            xmlData.Save("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+            xmlData.Save(Status.SavePath);
 
             response.Sucess = true;
             response.Discription = "Transaction successfully updated!";
@@ -130,7 +131,7 @@ namespace financial_management.XMLBackup
         public TransactionResponse DeleteTransaction(int id)
         {
             TransactionResponse response = new TransactionResponse();
-            var xmlData = XElement.Load("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+            var xmlData = Status.LoadPath;
             xmlData.Descendants("Transaction").Where(x => int.Parse(x.Attribute("Id").Value) == id).Remove();
 
             // Need to remember server fetched transactions only
@@ -148,7 +149,7 @@ namespace financial_management.XMLBackup
         {
             int[] deletedTransactions;
 
-            var xmlData = XElement.Load("C:/Users/scit/source/repos/Cw2_w1850877/financial_management/financial_management/Backup.xml");
+            var xmlData = Status.LoadPath;
             deletedTransactions = xmlData.Descendants("DeletedTransaction").Select(x => int.Parse(x.Attribute("Id").ToString())).ToArray();
 
             return deletedTransactions;

@@ -25,7 +25,7 @@ namespace financial_management.Models
                 {
                     using (var server = new HttpClient())
                     {
-                        server.BaseAddress = new Uri(Properties.Settings.Default.ServiceURL);
+                        server.BaseAddress = new Uri(Status.endpointURL);
                         var responseData = server.GetAsync("category");
                         responseData.Wait();
 
@@ -67,7 +67,7 @@ namespace financial_management.Models
                 {
                     using (var server = new HttpClient())
                     {
-                        server.BaseAddress = new Uri(Properties.Settings.Default.ServiceURL);
+                        server.BaseAddress = new Uri(Status.endpointURL);
                         var responseData = server.PostAsJsonAsync<CategoryDTO>("category/create", categoryDTO);
                         responseData.Wait();
 
@@ -123,7 +123,7 @@ namespace financial_management.Models
             {
                 using (var server = new HttpClient())
                 {
-                    server.BaseAddress = new Uri(Properties.Settings.Default.ServiceURL);
+                    server.BaseAddress = new Uri(Status.endpointURL);
                     var responseData = server.DeleteAsync("category?id=" + id);
                     responseData.Wait();
 
